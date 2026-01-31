@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ru"><head>
+<meta charset="utf-8"/>
+<title>tokmok-billiard</title>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#11d452",
+                        "background-light": "#f6f8f6",
+                        "background-dark": "#0a110d",
+                        "surface-dark": "#162a1c",
+                        "wood": "#5d4037"
+                    },
+                    fontFamily: {
+                        "display": ["Inter", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Inter', sans-serif;
+            -webkit-tap-highlight-color: transparent;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .glass-effect {
+            backdrop-filter: blur(10px);
+            background: rgba(22, 42, 28, 0.8);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen pb-24">
+<!-- Top Navigation Bar -->
+<header class="sticky top-0 z-50 glass-effect border-b border-white/10 px-4 py-4 flex items-center justify-between">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-3xl">sports_score</span>
+<h1 class="text-xl font-bold tracking-tight">Бильярдный клуб</h1>
+</div>
+<div class="size-10 rounded-full bg-surface-dark border border-white/10 flex items-center justify-center">
+<span class="material-symbols-outlined text-white">notifications</span>
+</div>
+</header>
+<!-- Stats Section -->
+<section class="p-4">
+<div class="flex gap-3">
+<div class="flex-1 bg-surface-dark p-4 rounded-xl border border-white/5 shadow-lg">
+<p class="text-slate-400 text-xs font-medium uppercase tracking-wider mb-1">Всего столов</p>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold">12</span>
+<span class="text-slate-500 mb-1">ед.</span>
+</div>
+</div>
+<div class="flex-1 bg-primary/10 p-4 rounded-xl border border-primary/20 shadow-lg">
+<p class="text-primary text-xs font-medium uppercase tracking-wider mb-1">Свободно</p>
+<div class="flex items-end gap-2">
+<span class="text-3xl font-bold text-primary">5</span>
+<span class="text-primary/70 mb-1 text-sm font-semibold">СЕЙЧАС</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Filter Section -->
+<section class="px-4 pb-2">
+<div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+<button class="bg-primary text-background-dark px-5 py-2 rounded-full text-sm font-bold whitespace-nowrap">Все</button>
+<button class="bg-surface-dark border border-white/10 text-white px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap">Русский бильярд</button>
+<button class="bg-surface-dark border border-white/10 text-white px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap">Пул</button>
+<button class="bg-surface-dark border border-white/10 text-white px-5 py-2 rounded-full text-sm font-medium whitespace-nowrap">Снукер</button>
+</div>
+</section>
+<!-- Section Header -->
+<div class="px-4 pt-4 flex items-center justify-between">
+<h2 class="text-lg font-bold leading-tight tracking-tight">Мониторинг залов</h2>
+<span class="material-symbols-outlined text-slate-400">filter_list</span>
+</div>
+<!-- Table Grid -->
+<main class="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4">
+<!-- Table Card: Available -->
+<div class="flex flex-col bg-surface-dark rounded-xl border border-white/10 overflow-hidden shadow-xl">
+<div class="relative h-40 bg-center bg-no-repeat bg-cover" data-alt="Professional Russian billiard table with green felt" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDAhee9LgQrL8B8cKl62ttwJKh-cSMAZSDVoiHNj1meeLZ-RbYnAv2DQAz05hDuMIfdopCRatr0e5oXxPf_tdW_f4fsqiNZKKGSE3KBDtXaqmQD_juQHwe_1AI17UDngwsruv3HuJQkafLK4K5-73ybVBLK7hIa3VyFSoRI5rNREUTt7tBtP8f4YenhlLMyQxpsxJ-Wf3Dylo6pEIqekatgwS1RBwOPfYbd76GoqUzkl-No5v4AomFhdPQ-ByURLXtTVBGhyIoi8zA");'>
+<div class="absolute top-3 left-3 bg-primary text-black px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Свободен</div>
+<div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-white text-xs font-semibold border border-white/10">800 ₽/час</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div>
+<h3 class="text-lg font-bold text-white">Стол №1</h3>
+<p class="text-slate-400 text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">circle</span> Русский бильярд
+                    </p>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-xl">calendar_today</span>
+                    Забронировать
+                </button>
+</div>
+</div>
+<!-- Table Card: Occupied -->
+<div class="flex flex-col bg-surface-dark/50 rounded-xl border border-white/5 overflow-hidden shadow-xl opacity-90">
+<div class="relative h-40 bg-center bg-no-repeat bg-cover grayscale" data-alt="Classic pool table with balls arranged" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD81ByxoZKpjdR6dnBQo48G8fZd_jaUen4_0whv7OP_pHYKap4beenH75QzjuunK6ubZ0bBmSsyLjDPaVliiCsSCteMeWridEOEJeodCuWHygYLUSnLgb9sINuqMNYLwFlnWRC0ljtWM42wTo4e0NBUhkWeBXyuG8FMmjHxJU1xikhKZHa0qYC7a9fNe-agTuv00LmtkjQQzdCgQOaEmG01mCrluHMz4kaDwFO8sZDBNTXGZPhtfdE0BFkV21s5F937D2zzOSovuGA");'>
+<div class="absolute inset-0 bg-background-dark/40"></div>
+<div class="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Занят</div>
+<div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-white text-xs font-semibold border border-white/10">600 ₽/час</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold text-slate-300">Стол №2</h3>
+<p class="text-slate-500 text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">circle</span> Пул
+                        </p>
+</div>
+</div>
+<div class="bg-red-500/10 border border-red-500/20 py-2.5 rounded-lg flex flex-col items-center justify-center">
+<p class="text-red-400 text-[10px] font-bold uppercase">Освободится в</p>
+<p class="text-red-400 text-lg font-bold leading-none mt-1">19:30</p>
+</div>
+</div>
+</div>
+<!-- Table Card: Available -->
+<div class="flex flex-col bg-surface-dark rounded-xl border border-white/10 overflow-hidden shadow-xl">
+<div class="relative h-40 bg-center bg-no-repeat bg-cover" data-alt="Billiard room interior with several tables" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC1UMgSwiPLteD4uNshz52MeBbebjOeqi_MIHD9q_f-Cgvz23JTTKs09WQrfe2geEXucFVBx3M6uN3Q_jqD8Q6EHH56rS3YNKTaRzi2tjhf-tWtGlKPS8cfM5uUo9plo-szQ2eEayh9AnqbelEXKxUxz8s7T0YnKrvPYwScuUUT0ah71S3CtlwFWnZye-Lv5RVahnbiIlVYaFcKP0LRW35wK2bEIzcxehHWlV3R46MTp0faznmkeNchHkiUw3fznwNztNPbKRqDYmg");'>
+<div class="absolute top-3 left-3 bg-primary text-black px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Свободен</div>
+<div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-white text-xs font-semibold border border-white/10">800 ₽/час</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div>
+<h3 class="text-lg font-bold text-white">Стол №3</h3>
+<p class="text-slate-400 text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">circle</span> Русский бильярд
+                    </p>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-background-dark font-bold py-3 rounded-lg flex items-center justify-center gap-2 transition-colors">
+<span class="material-symbols-outlined text-xl">calendar_today</span>
+                    Забронировать
+                </button>
+</div>
+</div>
+<!-- Table Card: Occupied -->
+<div class="flex flex-col bg-surface-dark/50 rounded-xl border border-white/5 overflow-hidden shadow-xl opacity-90">
+<div class="relative h-40 bg-center bg-no-repeat bg-cover grayscale" data-alt="Close up of a pool cue hitting the ball" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDyvIfZ-0oyc90zE0ubRC3CKmg2wIa_eISrPxpQIpjB6ydlah9cBZsytZ0i6_7aSRs1P2fBirHUIuixIJ4om7rOHoSuCT6g2JI_MGCs0tFodzg1akPALs5M__t9_ve_pUy8ShJCXe6lAqfFGy_nsmWUAwv4UITc4RKDAvROsYG2XYbzdI3SaVlP0hRMG1-S06pLQ7er05KWhhiEvPqqn7UdhvOe4RJ8k3vQy_wiZHB8qgoM91qaO6-QrpcxP1aShciKje28qt9Ik_U");'>
+<div class="absolute inset-0 bg-background-dark/40"></div>
+<div class="absolute top-3 left-3 bg-red-500 text-white px-2 py-1 rounded text-[10px] font-bold uppercase tracking-widest">Занят</div>
+<div class="absolute bottom-3 right-3 bg-black/60 backdrop-blur-md px-2 py-1 rounded text-white text-xs font-semibold border border-white/10">600 ₽/час</div>
+</div>
+<div class="p-4 flex flex-col gap-3">
+<div class="flex justify-between items-start">
+<div>
+<h3 class="text-lg font-bold text-slate-300">Стол №4</h3>
+<p class="text-slate-500 text-sm flex items-center gap-1">
+<span class="material-symbols-outlined text-sm">circle</span> Пул
+                        </p>
+</div>
+</div>
+<div class="bg-red-500/10 border border-red-500/20 py-2.5 rounded-lg flex flex-col items-center justify-center">
+<p class="text-red-400 text-[10px] font-bold uppercase">Освободится в</p>
+<p class="text-red-400 text-lg font-bold leading-none mt-1">21:00</p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (iOS Style) -->
+<nav class="fixed bottom-0 left-0 right-0 glass-effect border-t border-white/10 px-6 pb-8 pt-3 flex justify-between items-center z-50">
+<div class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">home</span>
+<span class="text-[10px] font-medium">Главная</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-primary">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1">grid_view</span>
+<span class="text-[10px] font-medium">Столы</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">book_online</span>
+<span class="text-[10px] font-medium">Брони</span>
+</div>
+<div class="flex flex-col items-center gap-1 text-slate-500">
+<span class="material-symbols-outlined">person</span>
+<span class="text-[10px] font-medium">Профиль</span>
+</div>
+</nav>
+<!-- Floating Shadow for iOS look -->
+<div class="fixed bottom-0 left-0 right-0 h-10 bg-gradient-to-t from-background-dark to-transparent pointer-events-none"></div>
+     <script src="index.js"></script>
+</body>
+</html>
